@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 5.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-5.0.dtd">
+
+
+
+<hibernate-mapping>
+
+	<class name="com.voice.ece.cgc.ericsson.pojo.UserStory" table="user_story">
+		<id name="id" column="id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+
+		<many-to-one name="release" column="_release"
+			class="com.voice.ece.cgc.ericsson.pojo.Release" not-null="false"
+			cascade="none" update="false"></many-to-one>
+
+		<property name="number" column="number" type="string"></property>
+
+		<property name="description" column="description" type="text"></property>
+
+		<property name="type" column="type" type="text"></property>
+
+		<property name="assumptions" column="assumptions" type="text"></property>
+
+		<!-- <set name="sprints" table="sprint_user_story" inverse="false" lazy="false" 
+			cascade="merge" fetch="select"> <key column="user_story" /> <many-to-many 
+			column="sprint" class="com.voice.ece.cgc.ericsson.pojo.Sprint" /> </set> -->
+		<set name="tasks" table="task" inverse="true" lazy="false" fetch="select"
+			cascade="all">
+			<key column="user_story" not-null="false" />
+			<one-to-many class="com.voice.ece.cgc.ericsson.pojo.Task" />
+		</set>
+
+		<many-to-one name="team" column="team"
+			class="com.voice.ece.cgc.ericsson.pojo.Team" not-null="true" cascade="none"
+			update="false"></many-to-one>
+
+	</class>
+</hibernate-mapping>

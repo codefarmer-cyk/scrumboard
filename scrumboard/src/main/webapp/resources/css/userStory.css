@@ -1,0 +1,45 @@
+@CHARSET "ISO-8859-1";
+
+
+.sprint_a a:hover {
+	color: white;
+}
+
+.user_story_table th {
+	border-bottom: red
+}
+
+.td-width-18 {
+	width: 18%;
+}
+
+.td-width-54 {
+	width: 54%;
+}
+
+.table_tb_tr {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom-style: inset;
+	border-width: 1px;
+	display: block;
+}
+
+.table_tb_tr:hover {
+	background-color: #F5F5DC;
+}
+
+.table_tf_tr {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom-style: inset;
+	border-width: 1px;
+}
+
+.overflowAuto {
+	overflow: auto;
+}
+
+.table_th_tr {
+	padding-bottom: 5px;
+}

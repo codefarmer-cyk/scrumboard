@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping>
+
+	<class name="com.voice.ece.cgc.ericsson.pojo.Team" table="team">
+		<id name="id" column="id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+
+
+		<!-- must set the inverse attr to be true <set name="" inverse="true" cascade="save-update" 
+			lazy="false"> <key column="id"/> <one-to-many entity-name=""/> </set> if 
+			the cascade is not "none"! -->
+
+		<set name="memberSet" table="member" inverse="true" fetch="select" lazy="false">
+			<key column="team" />
+			<one-to-many entity-name="com.voice.ece.cgc.ericsson.pojo.Member" />
+		</set>
+
+		<property name="teamName" column="team_name" type="string"
+			not-null="true"></property>
+
+		<property name="teamLogo" column="team_logo" type="string"
+			not-null="false"></property>
+
+	</class>
+</hibernate-mapping>

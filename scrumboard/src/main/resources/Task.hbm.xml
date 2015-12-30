@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping>
+
+	<class name="com.voice.ece.cgc.ericsson.pojo.Task" table="task">
+		<id name="id" column="id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="description" column="description" type="string"></property>
+		<property name="status" column="status" type="string"></property>
+		<property name="planTime" column="planTime" type="integer"></property>
+		<property name="actualTime" column="actualTime" type="integer"></property>
+		<property name="followUp" column="followUp" type="string"></property>
+		<property name="details" column="details" type="string"></property>
+		<property name="priority" column="priority" type="integer"></property>
+		<property name="cpiChange" column="cpiChange" type="boolean"></property>
+		<property name="backlog" column="backlog" type="boolean"
+			not-null="true"></property>
+		<property name="issue" column="issue" type="text"></property>
+
+		<many-to-one name="userStory" column="user_story"
+			class="com.voice.ece.cgc.ericsson.pojo.UserStory" cascade="all" lazy="false"
+			not-null="false"></many-to-one>
+
+		<many-to-one name="chargedMember" column="member"
+			class="com.voice.ece.cgc.ericsson.pojo.Member" not-null="false" lazy="false"
+			cascade="all"></many-to-one>
+
+		<many-to-one name="sprint" column="sprint"
+			class="com.voice.ece.cgc.ericsson.pojo.Sprint" not-null="false" lazy="false"
+			cascade="all"></many-to-one>
+
+
+	</class>
+</hibernate-mapping>

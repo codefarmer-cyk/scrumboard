@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 5.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-5.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.voice.ece.cgc.ericsson.pojo.Sprint" table="sprint">
+		<id name="id" column="id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+
+		<many-to-one name="release" column="_release" lazy="false"
+			class="com.voice.ece.cgc.ericsson.pojo.Release" not-null="true"
+			cascade="none"></many-to-one>
+
+		<property name="number" column="number" type="integer"></property>
+
+		<property name="startTime" column="start_time" type="date"></property>
+
+		<property name="durationWeek" column="duration_week" type="integer"></property>
+
+		<property name="velocity" column="velocity" type="integer"></property>
+
+		<property name="manday" column="manday" type="integer"></property>
+
+		<set name="taskSet" table="task" inverse="true" fetch="select"
+			cascade="all" lazy="false" order-by="userStory,chargedMember">
+			<key column="sprint" />
+			<one-to-many entity-name="com.voice.ece.cgc.ericsson.pojo.Task" />
+		</set>
+	</class>
+</hibernate-mapping>

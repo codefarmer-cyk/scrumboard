@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping>
+
+	<class name="com.voice.ece.cgc.ericsson.pojo.Member" table="member">
+		<id name="id" column="id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+
+
+		<many-to-one name="team" column="team"
+			class="com.voice.ece.cgc.ericsson.pojo.Team" not-null="true" cascade="all"></many-to-one>
+
+		<property name="name" column="name" type="string" not-null="true" unique="true"></property>
+		
+		<property name="avatar" column="avatar" type="string" not-null="false" unique="true"></property>
+
+		<set name="taskSet" inverse="true" table="Task" lazy="false" fetch="select" cascade="all">
+			<key column="member" />
+			<one-to-many class="com.voice.ece.cgc.ericsson.pojo.Task"/>
+		</set>
+
+	</class>
+</hibernate-mapping>

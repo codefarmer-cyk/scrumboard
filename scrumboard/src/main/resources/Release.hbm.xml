@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+
+<hibernate-mapping>
+
+	<class name="com.voice.ece.cgc.ericsson.pojo.Release" table="_release">
+		<id name="id" column="id" type="integer">
+			<generator class="increment"></generator>
+		</id>
+
+
+		<many-to-one name="team" column="team" lazy="false"
+			class="com.voice.ece.cgc.ericsson.pojo.Team" not-null="true" cascade="none"></many-to-one>
+
+		<property name="name" column="name" type="string" not-null="true"></property>
+
+		<set name="sprints" table="sprint" inverse="true" lazy="false"
+			fetch="select" cascade="all" order-by="number asc">
+			<key column="_release" not-null="true" />
+			<one-to-many class="com.voice.ece.cgc.ericsson.pojo.Sprint" />
+		</set>
+
+		<set name="userStories" table="user_story" inverse="true" lazy="false"
+			fetch="select" cascade="all">
+			<key column="_release" not-null="false" />
+			<one-to-many class="com.voice.ece.cgc.ericsson.pojo.UserStory" />
+		</set>
+	</class>
+</hibernate-mapping>
